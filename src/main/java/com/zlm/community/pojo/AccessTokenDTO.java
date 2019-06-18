@@ -1,6 +1,6 @@
 package com.zlm.community.pojo;
 
-public class AccessToken {
+public class AccessTokenDTO {
     private String client_id;
     private String client_secret;
     private String code;
@@ -49,7 +49,7 @@ public class AccessToken {
 
     @Override
     public String toString() {
-        return "AccessToken{" +
+        return "AccessTokenDTO{" +
                 "client_id='" + client_id + '\'' +
                 ", client_secret='" + client_secret + '\'' +
                 ", code='" + code + '\'' +
