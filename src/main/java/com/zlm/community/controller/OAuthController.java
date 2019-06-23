@@ -1,19 +1,16 @@
 package com.zlm.community.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.zlm.community.mapper.UserMapper;
+import com.zlm.community.dao.UserMapper;
 import com.zlm.community.model.User;
 import com.zlm.community.pojo.AccessTokenDTO;
 import com.zlm.community.pojo.GitUser;
 import com.zlm.community.provider.GIthubProvider;
-import okhttp3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.UUID;
 
 @Controller
