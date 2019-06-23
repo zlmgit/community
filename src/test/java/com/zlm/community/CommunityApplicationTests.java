@@ -40,4 +40,9 @@ public class CommunityApplicationTests {
         System.err.println(users);
 
     }
+    @Test
+    public void selectOne(){
+        User user = userMapper.selectOne(new QueryWrapper<User>().eq("token", "b32aac67-f794-4842-827b-f4308b902a32"));
+        System.err.println(user);
+    }
 }
