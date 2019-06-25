@@ -1,5 +1,6 @@
 package com.zlm.community;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zlm.community.dao.UserMapper;
 import com.zlm.community.model.User;
@@ -7,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -44,5 +46,17 @@ public class CommunityApplicationTests {
     public void selectOne(){
         User user = userMapper.selectOne(new QueryWrapper<User>().eq("token", "b32aac67-f794-4842-827b-f4308b902a32"));
         System.err.println(user);
+    }
+    @Test
+    public void testJson(){
+
+        List<User> list = JSON.parseArray("[]",User.class);
+        //System.err.println(CollectionUtils.isEmpty(list));
+        if(CollectionUtils.isEmpty(list)){
+            System.err.println("list是空:"+list.size());
+        }else {
+            System.err.println("list不是空:"+list.size());
+        }
+        System.err.println(list);
     }
 }

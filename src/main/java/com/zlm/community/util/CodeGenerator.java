@@ -50,7 +50,8 @@ public class CodeGenerator {
             mpg.setGlobalConfig(gc);
 
             // 数据源配置
-            DataSourceConfig dsc = new DataSourceConfig();
+            DataSourceConfig dsc =null;
+            dsc=new DataSourceConfig();
             dsc.setUrl("jdbc:mysql://172.16.5.50:3306/user?useUnicode=true&characterEncoding=utf8");
             dsc.setDriverName("com.mysql.jdbc.Driver");
             dsc.setUsername("root");

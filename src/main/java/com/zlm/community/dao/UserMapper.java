@@ -11,8 +11,8 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
-    @Insert("insert into user (account_id,name,token,creat,modify) values (#{accountId},#{name},#{token},#{creat},#{modify}) ")
-    void insertUser(User user);
+   /* @Insert("insert into user (account_id,name,token,creat,modify) values (#{accountId},#{name},#{token},#{creat},#{modify}) ")
+    void insertUser(User user);*/
     @Select("select * from user where id=1")
     User selectUserById();
 

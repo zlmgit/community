@@ -20,19 +20,20 @@ import java.util.UUID;
 public class OAuthController {
 
     @Value("${github.clientId}")
-    private String clientId ;
+    private String         clientId;
     @Value("${github.clientSecret}")
-    private String clientSecret ;
+    private String         clientSecret;
     @Value("${community.token}")
-    private String communityToken;
+    private String         communityToken;
     @Autowired
     private GIthubProvider gitHubProvider;
 
     @Autowired
-    private UserMapper userMapper;
+    private UserMapper     userMapper;
 
     @RequestMapping("/callback")
-    public String hello(String code, String state, HttpServletRequest request, HttpServletResponse response){
+    public String hello(String code, String state, HttpServletRequest request,
+                        HttpServletResponse response) {
 
         AccessTokenDTO dto = new AccessTokenDTO();
         dto.setCode(code);
@@ -41,18 +42,17 @@ public class OAuthController {
         dto.setClient_secret(clientSecret);
         String accessToken = gitHubProvider.getAccessToken(dto);
         GitUser gitUser = gitHubProvider.getUserByAccessToken(accessToken);
-        if(gitUser!=null){
-            //HttpSession session = request.getSession();
-            //session.setAttribute("user",gitUser);
+        if (gitUser != null && gitUser.getId() != null) {
             String token = UUID.randomUUID().toString();
-            User user= new User();
+            User user = new User();
             user.setAccountId(gitUser.getId());
             user.setName(gitUser.getName());
-            user.setCreat(System.currentTimeMillis());
+            user.setCreateTi(System.currentTimeMillis());
+            user.setAvatarUrl(gitUser.getAvatar_url());
             user.setToken(token);
-            user.setModify(user.getCreat());
-            userMapper.insertUser(user);
-            response.addCookie(new Cookie(communityToken,token));
+            user.setModifyTi(user.getCreateTi());
+            userMapper.insert(user);
+            response.addCookie(new Cookie(communityToken, token));
             return "redirect:/";
         }
         return "redirect:/";

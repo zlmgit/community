@@ -12,6 +12,7 @@ public class User implements Serializable {
     private String accountId;
     private String token;
     private String name;
-    private Long creat;
-    private Long modify;
+    private String avatarUrl;
+    private Long createTi;
+    private Long modifyTi;
 }
