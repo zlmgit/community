@@ -30,10 +30,12 @@ CREATE TABLE `user` (
 ```sql
 CREATE TABLE `question` (
   `id` int(11) NOT NULL COMMENT 'id',
-  `description` varchar(255) DEFAULT NULL COMMENT '描述',
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `description` varchar(1000) DEFAULT NULL COMMENT '描述',
+  `creator` int(11) DEFAULT NULL COMMENT '发起人',
   `comment_count` int(11) DEFAULT '0' COMMENT '评论数',
   `view_count` int(11) DEFAULT '0' COMMENT '浏览数',
-  `like_count` int(11) DEFAULT '0' COMMENT '关注数',
+  `like_count` int(11) DEFAULT '0' COMMENT '点赞数',
   `tag` varchar(250) DEFAULT NULL COMMENT '标签',
   `create_ti` bigint(17) DEFAULT NULL COMMENT '创建时间',
   `modify_ti` bigint(20) DEFAULT NULL COMMENT '修改时间',

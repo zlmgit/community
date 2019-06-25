@@ -25,6 +25,15 @@ package com.zlm.community.model;
             */
     private Integer id;
 
+    /**
+     * 发起人
+     */
+    private Integer creator;
+    /**
+     * 标题
+     */
+    private String title;
+
             /**
             * 描述
             */
