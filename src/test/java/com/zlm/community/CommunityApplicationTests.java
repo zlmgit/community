@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zlm.community.dao.UserMapper;
 import com.zlm.community.model.User;
+import com.zlm.community.service.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,9 @@ public class CommunityApplicationTests {
 
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private IUserService userService;
     @Test
     public void testMp() {
         List<User> users = userMapper.selectList(null);
@@ -58,5 +62,12 @@ public class CommunityApplicationTests {
             System.err.println("list不是空:"+list.size());
         }
         System.err.println(list);
+    }
+    @Test
+    public void testGetOne(){
+        QueryWrapper<User>  query= new QueryWrapper<User>();
+        query.eq("token","4b37b041-9ea0-4526-8cc0-ff854c1f1ca4");
+        User user = userService.getOne(query);
+        System.out.println(user);
     }
 }

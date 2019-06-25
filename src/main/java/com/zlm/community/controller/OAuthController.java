@@ -4,12 +4,14 @@ import com.zlm.community.dao.UserMapper;
 import com.zlm.community.model.User;
 import com.zlm.community.pojo.AccessTokenDTO;
 import com.zlm.community.pojo.GitUser;
+import com.zlm.community.service.IUserService;
 import com.zlm.community.util.GIthubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,8 +29,8 @@ public class OAuthController {
     @Autowired
     private GIthubProvider gitHubProvider;
 
-    @Autowired
-    private UserMapper     userMapper;
+    @Resource
+    private IUserService userService;
 
     @RequestMapping("/callback")
     public String hello(String code, String state, HttpServletRequest request,
@@ -50,7 +52,7 @@ public class OAuthController {
             user.setAvatarUrl(gitUser.getAvatar_url());
             user.setToken(token);
             user.setModifyTi(user.getCreateTi());
-            userMapper.insert(user);
+            userService.save(user);
             response.addCookie(new Cookie(communityToken, token));
             return "redirect:/";
         }

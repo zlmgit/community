@@ -1,12 +1,11 @@
 package com.zlm.community.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zlm.community.dao.UserMapper;
 import com.zlm.community.model.User;
+import com.zlm.community.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.Cookie;
@@ -19,7 +18,7 @@ public class IndexController {
     private String     communityToken;
 
     @Autowired
-    private UserMapper userMapper;
+    private IUserService userService;
 
     @RequestMapping("/")
     public String index(HttpServletRequest request) {
@@ -27,8 +26,7 @@ public class IndexController {
         if (cookies != null && cookies.length > 0) {
             for (Cookie cookie : cookies) {
                 if (communityToken.equals(cookie.getName())) {
-                    User user = userMapper
-                        .selectOne(new QueryWrapper<User>().eq("token", cookie.getValue()));
+                    User user = userService.getOne(new QueryWrapper<User>().eq("token",cookie.getValue()));
                     if (user != null) {
                         request.getSession().setAttribute("user", user);
                     }
