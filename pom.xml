@@ -88,14 +88,15 @@
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
-                    <include>**/*.class</include>
-                    <include>**/*Mapper*.xml</include>
-                    <include>**/*.properties</include>
                     <include>**/*.xml</include>
-                    <include>**/*.png</include>
-                    <include>**/*.json</include>
-                    <include>**/*.html</include>
-                    <include>**/*.txt</include>
+                </includes>
+            </resource>
+            <!--将resources目录下的配置文件编译进classes文件  -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
                 </includes>
             </resource>
         </resources>
