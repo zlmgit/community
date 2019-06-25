@@ -1,4 +1,4 @@
-package com.zlm.community.provider;
+package com.zlm.community.util;
 
 import com.alibaba.fastjson.JSON;
 import com.zlm.community.pojo.AccessTokenDTO;
