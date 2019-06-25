@@ -1,4 +1,4 @@
-package com.zlm.community.provider;
+package com.zlm.community.util;
 
 import com.alibaba.fastjson.JSON;
 import com.zlm.community.pojo.AccessTokenDTO;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class GIthubProvider {
