@@ -1,9 +1,15 @@
 package com.zlm.community.controller;
 
 
+import com.zlm.community.model.Question;
+import com.zlm.community.service.IQuestionService;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -16,5 +22,16 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/question")
 public class QuestionController {
+
+    @Resource
+    private IQuestionService questionService;
+
+    @PostMapping("/publish")
+    public String doPublish(Question question){
+
+        questionService.save(question);
+
+        return "publish";
+    }
 
 }
