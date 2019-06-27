@@ -1,4 +1,4 @@
-package com.zlm.community.pojo;
+package com.zlm.community.dto;
 
 import lombok.Data;
 

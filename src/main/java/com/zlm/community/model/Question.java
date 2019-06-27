@@ -1,9 +1,12 @@
 package com.zlm.community.model;
 
-    import java.io.Serializable;
-    import lombok.Data;
-    import lombok.EqualsAndHashCode;
-    import lombok.experimental.Accessors;
+import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
 * <p>
@@ -13,63 +16,63 @@ package com.zlm.community.model;
 * @author zhuluming
 * @since 2019-06-25
 */
-    @Data
-        @EqualsAndHashCode(callSuper = false)
-    @Accessors(chain = true)
-    public class Question implements Serializable {
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class Question implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-            /**
-            * id
-            */
-    private Integer id;
+    /**
+    * id
+    */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer           id;
 
     /**
      * 发起人
      */
-    private Integer creator;
+    private Integer           creator;
     /**
      * 标题
      */
-    private String title;
+    private String            title;
 
-            /**
-            * 描述
-            */
-    private String description;
+    /**
+    * 描述
+    */
+    private String            description;
 
-            /**
-            * 评论数
-            */
-    private Integer commentCount;
+    /**
+    * 评论数
+    */
+    private Integer           commentCount;
 
-            /**
-            * 浏览数
-            */
-    private Integer viewCount;
+    /**
+    * 浏览数
+    */
+    private Integer           viewCount;
 
-            /**
-            * 关注数
-            */
-    private Integer likeCount;
+    /**
+    * 关注数
+    */
+    private Integer           likeCount;
 
-            /**
-            * 标签
-            */
-    private String tag;
+    /**
+    * 标签
+    */
+    private String            tag;
 
-            /**
-            * 创建时间
-            */
-    private Long createTi;
+    /**
+    * 创建时间
+    */
+    private Long              createTi;
 
-            /**
-            * 修改时间
-            */
-    private Long modifyTi;
+    /**
+    * 修改时间
+    */
+    private Long              modifyTi;
 
-    private Integer version;
-
+    private Integer           version;
 
 }

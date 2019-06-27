@@ -1,5 +1,6 @@
 package com.zlm.community.service;
 
+import com.zlm.community.dto.QuestionDTO;
 import com.zlm.community.model.Question;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IQuestionService extends IService<Question> {
 
+    QuestionDTO selectQuestionList();
 }

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/bootstrap.js"></script>
-    <link rel="stylesheet" href="css/bootstrap-theme.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/community.css">
+    <script src="/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/community.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -15,7 +15,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">zlm社区</span>
             </button>
-            <a class="navbar-brand" href="#">zlm社区</a>
+            <a class="navbar-brand" href="/">zlm社区</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -48,16 +48,17 @@
             <form action="/question/publish" method="post">
                 <div class="form-group">
                     <label for="title">问题标题 (简单扼要):</label>
-                    <input type="text" id="title" class="form-control" name="title" placeholder="问题标题_">
+                    <input type="text" id="title" class="form-control" name="title" th:value="${title}" placeholder="问题标题">
                 </div>
                 <div class="form-group">
                     <label for="description">问题补充 (必填,请参照右侧提示)</label>
-                    <textarea name="description" id="description" class="form-control" cols="30" rows="10" ></textarea>
+                    <textarea name="description" th:text="${description}" id="description" class="form-control" cols="30" rows="10" ></textarea>
                 </div>
                 <div class="form-group">
                     <label for="tag">添加标签</label>
-                    <input type="text" id="tag" class="form-control" name="tag" placeholder="输入标签,以,隔开">
+                    <input type="text" id="tag" class="form-control" name="tag" th:value="${tag}"  placeholder="输入标签,以,隔开">
                 </div>
+                <span th:text="${error}" class="error-msg"></span>
                 <button type="submit" class="btn btn-success publish-btn">发布</button>
             </form>
         </div>

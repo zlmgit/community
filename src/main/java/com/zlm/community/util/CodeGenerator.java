@@ -79,7 +79,7 @@ public class CodeGenerator {
         };
 
         // 如果模板引擎是 freemarker
-        String templatePath = "/templates/mapper.xml.ftl";
+        String templatePath = "/templates/mapper.xml.vm";
         // 如果模板引擎是 velocity
         // String templatePath = "/templates/mapper.xml.vm";
 
@@ -109,7 +109,6 @@ public class CodeGenerator {
         strategy.setEntityLombokModel(true);
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         mpg.setStrategy(strategy);
-        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
     }
 

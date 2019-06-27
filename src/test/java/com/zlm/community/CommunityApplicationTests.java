@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zlm.community.dao.UserMapper;
 import com.zlm.community.model.User;
 import com.zlm.community.service.IUserService;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -69,5 +71,11 @@ public class CommunityApplicationTests {
         query.eq("token","4b37b041-9ea0-4526-8cc0-ff854c1f1ca4");
         User user = userService.getOne(query);
         System.out.println(user);
+    }
+
+    @Test
+    public void testStream(){
+        List<User> users= Lists.newArrayList();
+        System.out.println(users);
     }
 }

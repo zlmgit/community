@@ -1,7 +1,9 @@
 package com.zlm.community.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zlm.community.dto.QuestionDTO;
 import com.zlm.community.model.User;
+import com.zlm.community.service.IQuestionService;
 import com.zlm.community.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +22,9 @@ public class IndexController {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private IQuestionService iQuestionService;
+
     @RequestMapping("/")
     public String index(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
@@ -34,6 +39,7 @@ public class IndexController {
                 }
             }
         }
+        QuestionDTO questionDTO = iQuestionService.selectQuestionList();
         return "index";
     }
 }

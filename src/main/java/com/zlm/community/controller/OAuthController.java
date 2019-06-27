@@ -1,9 +1,8 @@
 package com.zlm.community.controller;
 
-import com.zlm.community.dao.UserMapper;
 import com.zlm.community.model.User;
-import com.zlm.community.pojo.AccessTokenDTO;
-import com.zlm.community.pojo.GitUser;
+import com.zlm.community.dto.AccessTokenDTO;
+import com.zlm.community.dto.GitUser;
 import com.zlm.community.service.IUserService;
 import com.zlm.community.util.GIthubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
