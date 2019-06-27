@@ -44,6 +44,7 @@ public class QuestionController {
         model.addAttribute("tag",question.getTag());
         model.addAttribute("description",question.getDescription());
         model.addAttribute("title",question.getTitle());
+        System.err.println(question);
         User user=null;
         Cookie[] cookies = request.getCookies();
         if (cookies != null && cookies.length > 0) {
@@ -61,8 +62,8 @@ public class QuestionController {
             model.addAttribute("error","请先登录");
             return "publish";
         }
+        question.setCreator(user.getId());
         question.setCreateTi(System.currentTimeMillis());
-        question.setCreator(Integer.valueOf(user.getAccountId()));
         boolean save = questionService.save(question);
         return "redirect:/";
     }

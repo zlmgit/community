@@ -29,7 +29,7 @@ CREATE TABLE `user` (
 ```
 ```sql
 CREATE TABLE `question` (
-  `id` int(11) NOT NULL COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `title` varchar(255) DEFAULT NULL COMMENT '标题',
   `description` varchar(1000) DEFAULT NULL COMMENT '描述',
   `creator` int(11) DEFAULT NULL COMMENT '发起人',

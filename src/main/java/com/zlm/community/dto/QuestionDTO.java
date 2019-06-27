@@ -1,6 +1,7 @@
 package com.zlm.community.dto;
 
 import com.zlm.community.model.User;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @Date: 2019/6/26 16:16
  * @Description:
  */
+@Data
 public class QuestionDTO implements Serializable {
     private Integer           id;
 

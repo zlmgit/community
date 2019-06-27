@@ -4,6 +4,8 @@ import com.zlm.community.dto.QuestionDTO;
 import com.zlm.community.model.Question;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 问题表 服务类
@@ -14,5 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IQuestionService extends IService<Question> {
 
-    QuestionDTO selectQuestionList();
+    List<QuestionDTO> selectQuestionList();
 }
