@@ -1,5 +1,8 @@
 package com.zlm.community.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zlm.community.dto.PaginationDTO;
 import com.zlm.community.dto.QuestionDTO;
 import com.zlm.community.model.Question;
 import com.zlm.community.dao.QuestionMapper;
@@ -9,7 +12,6 @@ import com.zlm.community.service.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.expression.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,15 +33,19 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
     @Autowired
     private IUserService iUserService;
     @Override
-    public List<QuestionDTO> selectQuestionList() {
-        List<Question> questions = questionMapper.selectList(null);
+    public PaginationDTO<QuestionDTO> selectQuestionList(Integer page, Integer size) {
+        IPage<Question> questionIPage = questionMapper.selectPage(new Page<Question>(page,size), null);
         List<QuestionDTO> questionDTOS = new ArrayList<>();
-        questions.forEach(question -> {
+        questionIPage.getRecords().forEach(question -> {
             QuestionDTO questionDTO= new QuestionDTO();
             BeanUtils.copyProperties(question , questionDTO);
             questionDTO.setUser(iUserService.getById(question.getCreator()));
             questionDTOS.add(questionDTO);
         });
-        return questionDTOS;
+        PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO();
+        paginationDTO.setPagination(Integer.valueOf(questionIPage.getPages()+""),page);
+        paginationDTO.setData(questionDTOS);
+        return paginationDTO;
     }
+
 }

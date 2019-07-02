@@ -2,7 +2,11 @@ package com.zlm.community;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zlm.community.dao.QuestionMapper;
 import com.zlm.community.dao.UserMapper;
+import com.zlm.community.model.Question;
 import com.zlm.community.model.User;
 import com.zlm.community.service.IUserService;
 import org.assertj.core.util.Lists;
@@ -25,6 +29,9 @@ public class CommunityApplicationTests {
 
     @Resource
     private IUserService userService;
+
+    @Resource
+    private QuestionMapper questionMapper;
     @Test
     public void testMp() {
         List<User> users = userMapper.selectList(null);
@@ -76,6 +83,20 @@ public class CommunityApplicationTests {
     @Test
     public void testStream(){
         List<User> users= Lists.newArrayList();
+        users.forEach(user -> System.out.println(user.getCreateTi()));
         System.out.println(users);
+    }
+    @Test
+    public void testPage(){
+        Page<Question> page=new Page<>();
+        page.setSize(2);
+        page.setCurrent(1);
+        IPage<Question> questionIPage = questionMapper.selectPage(page, null);
+        List<Question> records = questionIPage.getRecords();
+        System.out.println(records);
+        System.out.println(questionIPage.getCurrent());
+        System.out.println(questionIPage.getPages());
+        System.out.println(questionIPage.getTotal());
+        System.out.println(questionIPage.getSize());
     }
 }

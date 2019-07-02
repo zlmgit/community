@@ -58,7 +58,7 @@ public class QuestionController {
                 }
             }
         }
-        if(user==null&&user.getAccountId()!=null){
+        if(user==null||user.getAccountId()==null){
             model.addAttribute("error","请先登录");
             return "publish";
         }

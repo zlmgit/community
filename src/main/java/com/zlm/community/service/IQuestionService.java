@@ -1,5 +1,8 @@
 package com.zlm.community.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zlm.community.dto.PaginationDTO;
 import com.zlm.community.dto.QuestionDTO;
 import com.zlm.community.model.Question;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -16,5 +19,5 @@ import java.util.List;
  */
 public interface IQuestionService extends IService<Question> {
 
-    List<QuestionDTO> selectQuestionList();
+    PaginationDTO<QuestionDTO> selectQuestionList(Integer page, Integer size);
 }

@@ -15,7 +15,10 @@ The following guides illustrate how to use some features concretely:
 
 ### 脚本
 ```sql
-CREATE TABLE `user` (
+create database user default character set utf8;
+```
+```sql
+CREATE TABLE `user`.`user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `account_id` int(11) DEFAULT NULL COMMENT 'git账户Id',
   `name` varchar(20) DEFAULT NULL COMMENT 'git昵称',
@@ -28,7 +31,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 ```
 ```sql
-CREATE TABLE `question` (
+CREATE TABLE `user`.`question` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `title` varchar(255) DEFAULT NULL COMMENT '标题',
   `description` varchar(1000) DEFAULT NULL COMMENT '描述',
