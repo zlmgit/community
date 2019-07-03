@@ -45,19 +45,7 @@ public class QuestionController {
         model.addAttribute("description",question.getDescription());
         model.addAttribute("title",question.getTitle());
         System.err.println(question);
-        User user=null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length > 0) {
-            for (Cookie cookie : cookies) {
-                if (communityToken.equals(cookie.getName())) {
-                    user = userService.getOne(new QueryWrapper<User>().eq("token",cookie.getValue()));
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
-                    break;
-                }
-            }
-        }
+        User user= (User) request.getSession().getAttribute("user");
         if(user==null||user.getAccountId()==null){
             model.addAttribute("error","请先登录");
             return "publish";

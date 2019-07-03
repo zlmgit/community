@@ -23,11 +23,6 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    @Value("${community.token}")
-    private String     communityToken;
-
-    @Autowired
-    private IUserService userService;
 
     @Autowired
     private IQuestionService iQuestionService;
@@ -36,18 +31,6 @@ public class IndexController {
     public String index(HttpServletRequest request, Model model,
                         @RequestParam(value = "page",defaultValue = "1") Integer page,
                         @RequestParam(value = "size",defaultValue = "8") Integer size) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length > 0) {
-            for (Cookie cookie : cookies) {
-                if (communityToken.equals(cookie.getName())) {
-                    User user = userService.getOne(new QueryWrapper<User>().eq("token",cookie.getValue()));
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
-                    break;
-                }
-            }
-        }
         PaginationDTO<QuestionDTO> paginationDTO = iQuestionService.selectQuestionList(page, size);
         model.addAttribute("pagination", paginationDTO);
         return "index";
